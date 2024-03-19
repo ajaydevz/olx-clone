@@ -1,0 +1,69 @@
+/* Base styles */
+.wishlist-container {
+    padding: 20px;
+  }
+  
+  .wishlist-item {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .wishlist-item img {
+    width: 100px; /* Adjust the image width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 20px;
+  }
+  
+  .wishlist-item h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .wishlist-item p {
+    margin-bottom: 5px;
+  }
+  
+  .wishlist-buttons {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: flex-start; /* Align buttons to the left */
+    margin-top: 10px; /* Add space between wishlist item and buttons */
+  }
+  
+  .wishlist-buttons button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    margin-bottom: 5px; /* Add space between buttons */
+  }
+  
+  .wishlist-buttons button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Media queries for responsiveness */
+  @media (max-width: 768px) {
+    .wishlist-item {
+      flex-direction: column; /* Stack items vertically on small screens */
+    }
+  
+    .wishlist-item img {
+      width: 100%; /* Make image fill the container width */
+      margin-right: 0; /* Remove right margin */
+      margin-bottom: 10px; /* Add space between image and text */
+    }
+  
+    .wishlist-buttons {
+      align-items: center; /* Align buttons to the center */
+    }
+  }
+  
