@@ -1,6 +1,15 @@
 /* Base styles */
 .wishlist-container {
     padding: 20px;
+    height: auto;
+    min-height: 32rem;
+  }
+
+  .wish-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10rem;
   }
   
   .wishlist-item {

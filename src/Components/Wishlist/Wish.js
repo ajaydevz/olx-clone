@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext, FirebaseContext } from '../../store/Context';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, query, where, getDocs, endAt } from 'firebase/firestore';
 import { doc, deleteDoc } from 'firebase/firestore';
 import './Wish.css'; // Import the CSS file for styling
 
@@ -61,7 +61,10 @@ const Wishlist = () => {
           </div>
         ))
       ) : (
-        <p>No items in your wishlist.</p>
+        <div className='wish-cont'>
+                  <h1>No items in your wishlist.</h1>
+
+          </div>
       )}
     </div>
   );
