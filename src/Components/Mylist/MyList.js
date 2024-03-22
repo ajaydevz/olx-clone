@@ -2,13 +2,13 @@ import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext, FirebaseContext } from '../../store/Context';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+import { deleteDoc, doc } from 'firebase/firestore';
 import './MyList.css';
 
 const MyListings = () => {
   const [listings, setListings] = useState([]);
   const { user } = useContext(AuthContext);
   const { firebase } = useContext(FirebaseContext);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchListings = async () => {
@@ -27,19 +27,23 @@ const MyListings = () => {
         console.error('Error fetching listings:', error);
       }
     };
-
+  
     if (user) {
       fetchListings();
     }
   }, [user, firebase.db]);
 
 
-  const handleMyListingsClick = () => {
-    // Redirect to appropriate page based on user authentication status
-    if (user) {
-      navigate('/my-listings');
-    } else {
-      navigate('/signup'); // Redirect to signup page if user is not logged in
+  const handleDelete = async (id) => {
+    try {
+      // Delete the product document from Firestore
+      await deleteDoc(doc(firebase.db, 'products', id));
+      // Update the listings state to reflect the deletion
+      setListings(listings.filter(listing => listing.id !== id));
+
+      
+    } catch (error) {
+      console.error('Error deleting product:', error);
     }
   };
 
@@ -56,6 +60,10 @@ const MyListings = () => {
             <p className="product-category">Category: {listing.category}</p>
             <p className="product-price">Price: {listing.price}</p>
             {/* Add more details as needed */}
+            <div className="product-actions">
+                <button style={{background:"lightblue"}} >Edit</button>
+                <button style={{background:"red"}} onClick={() => handleDelete(listing.id)}>Delete</button>
+            </div>
           </div>
         </div>
       ))}
