@@ -52,8 +52,10 @@ export default function Signup() {
               const usersCollection = collection(firebase.db, "users");
               await addDoc(usersCollection, userDocData)
                 .then((docRef) => {
+                  
                   Swal.fire({ position: 'top-center', icon: 'success', text: 'User account created successfully', width: 340, showConfirmButton: false, timer: 1500 })
-                  navigate('/login');
+                  console.log(">>...................",user)
+                  navigate('/');
                 })
                 .catch((error) => {
                   console.error("Error adding document: ", error);
