@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { collection, addDoc } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import Swal from 'sweetalert2';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Create = () => {
   const [productName, setProductName] = useState('')
@@ -23,6 +25,12 @@ const Create = () => {
     console.log('create ad', productName, category, productDetails, price, image.name)  //test mode
     if (!user) return alert('Please login to continue');   // ensure user is logged in
     const date = new Date()
+
+    if (parseFloat(price) < 0) {
+      toast.error("Price can't be negative");
+      return;
+    }
+
     try {
 
       // Upload an image to Firebase Storage
@@ -64,6 +72,7 @@ const Create = () => {
 
   return (
     <Fragment>
+      <ToastContainer />
       <Header />
       <div className="row mx-5 p-4">
         <div className="col-12 col-md-4"></div>
