@@ -8,6 +8,8 @@ import SellButtonPlus from '../../assets/SellButtonPlus';
 import { AuthContext, FirebaseContext } from '../../store/Context';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
+import Heart from '../../assets/Heart';
 
 function Header() {
 
@@ -29,6 +31,7 @@ function Header() {
         firebase.firebaseAuth.signOut(auth).then(() => {
           // Sign-out successful.
           Swal.fire({ position: 'top-end', icon: 'success', text: 'Logout success', width: 200, showConfirmButton: false, timer: 1500 })
+          Navigate('/login')
         }).catch((error) => {
           console.log(error.message);
           alert('Unable to Logout | ' + error.message);
@@ -36,6 +39,16 @@ function Header() {
       }
     })
   }
+
+  const handleHeartClick = () => {
+    if (user) {
+      // User is logged in, redirect to wishlist
+      Navigate('/wish');
+    } else {
+      // User is not logged in, redirect to signup
+      Navigate('/signup');
+    }
+  };
 
   function sellButtonHandler() {
     if (user) Navigate('/create')
@@ -63,6 +76,17 @@ function Header() {
           <div className="searchAction">
             <Search color="#ffffff"></Search>
           </div>
+        </div>
+        <div className='loginPage'>
+        {/* Conditionally render the My Listings link based on user authentication */}
+        {user ?
+          <Link to="/my-list" className="fw-bold" style={{ color: 'black' }}>My Products</Link>
+          :
+          <Link to="/signup" className="fw-bold" style={{ color: 'black' }}>My Products</Link>
+        }
+        </div>
+        <div onClick={handleHeartClick}>
+          <Heart />
         </div>
 
         <div className="loginPage">
