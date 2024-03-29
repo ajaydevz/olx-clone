@@ -8,6 +8,10 @@ import Login from './Pages/Login'
 import Create from './Pages/Create'
 import ViewPost from './Pages/ViewPost'
 import Post from './store/PostContext';
+import WishList from './Pages/WishList';
+import Mylist from './Pages/Mylist';
+
+
 
 
 function App() {
@@ -32,6 +36,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/create" element={<Create />} />
           <Route path="/view" element={<ViewPost />} />
+          <Route path="/wish" element={<WishList />} />
+          <Route path="/my-list" element={<Mylist />} />
         </Routes>
       </Router>
       </Post>
