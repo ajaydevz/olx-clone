@@ -2,8 +2,9 @@
   padding: 10px;
   background-color: whitesmoke;
   position: fixed;
-  width: 100vw;
-  z-index: 999;
+  top: 0;
+  width: 100%;
+  z-index: 1000; 
 }
 .headerChildDiv {
   width: 100%;

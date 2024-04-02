@@ -1,17 +1,20 @@
 import React, { Fragment, useContext, useEffect } from 'react';
 import Create from '../Components/Create/Create';
-import { AuthContext } from '../store/Context';
+import { AuthContext }  from '../store/Context';
 import { useNavigate } from 'react-router-dom';
 
 const CreatePage = () => {
 
-  const Navigate = useNavigate()
+  const navigate = useNavigate()
   const { user } = useContext(AuthContext)
   useEffect(() => {
     if (!user) {
       console.log('vpm,omgdf')
       
-      Navigate('/login')   }// if not logged-in, then redirect
+      navigate('/login')   }
+    else{
+      console.log("user is not found")
+    }// if not logged-in, then redirect
   })
 
   return (

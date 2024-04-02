@@ -41,7 +41,7 @@ const Wishlist = () => {
       console.error('Error removing wishlist item:', error);
     }
   };
-
+    
 
   return (
     <div className="wishlist-container">
